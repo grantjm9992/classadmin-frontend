@@ -13,6 +13,8 @@ import { ErrorPageComponent } from './views/pages/error-page/error-page.componen
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import {AuthApiService} from "./core/services/auth.api.service";
 import {HttpClientModule} from "@angular/common/http";
+import {NgxStripeModule} from "ngx-stripe";
+import {FullCalendarModule} from "@fullcalendar/angular";
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserAnimationsModule,
     LayoutModule,
     HttpClientModule,
+    NgxStripeModule.forRoot('pk_test_EqkYfH3HJn2kP6DCEBByINFT'),
   ],
   providers: [
     AuthGuard,

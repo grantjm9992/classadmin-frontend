@@ -53,8 +53,12 @@ const routes: Routes = [
         loadChildren: () => import('./views/pages/general/general.module').then(m => m.GeneralModule)
       },
       {
-        path: 'department',
-        loadChildren: () => import('./views/core-context/department/department.module').then(m => m.DepartmentModule)
+        path: 'core',
+        loadChildren: () => import('./views/core-context/core-context.module').then(m => m.CoreContextModule)
+      },
+      {
+        path: 'time-tracking',
+        loadChildren: () => import('./views/time-tracking-context/time-tracking-context.module').then(m => m.TimeTrackingContextModule)
       },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       // { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }

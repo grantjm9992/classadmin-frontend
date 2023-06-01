@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {AuthApiService} from "../../../../core/services/auth.api.service";
+import {UserService} from "../../../../core/services/user.service";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   password: string;
   errorMessage: string;
 
-  constructor(private router: Router, private route: ActivatedRoute, private authApiService: AuthApiService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private authApiService: AuthApiService, private userService: UserService) { }
 
   ngOnInit(): void {
     // get return url from route parameters or default to '/'
@@ -26,6 +27,10 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('isLoggedin', 'true');
       localStorage.setItem('token', response.authorisation.token);
       localStorage.setItem('user', JSON.stringify(response.user));
+      this.userService.setLoggedInUser(response.user);
+      if (response.check) {
+        this.userService.setCheck(response.check);
+      }
       if (localStorage.getItem('isLoggedin')) {
         this.router.navigate([this.returnUrl]);
       }

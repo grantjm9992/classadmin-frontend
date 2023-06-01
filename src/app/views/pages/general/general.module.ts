@@ -13,6 +13,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { Routes, RouterModule } from '@angular/router';
+import {NgxStripeModule} from "ngx-stripe";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { BuyComponent } from './pricing/buy/buy.component';
+import {NgSelectModule} from "@ng-select/ng-select";
+import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 
 const routes: Routes = [
   {
@@ -42,7 +47,13 @@ const routes: Routes = [
       },
       {
         path: 'pricing',
-        component: PricingComponent
+        children: [{
+          path: '',
+          component: PricingComponent,
+        }, {
+          path: 'buy/:type',
+          component: BuyComponent,
+        }]
       },
       {
         path: 'timeline',
@@ -53,14 +64,19 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [GeneralComponent, BlankComponent, FaqComponent, InvoiceComponent, ProfileComponent, PricingComponent, TimelineComponent],
+  declarations: [GeneralComponent, BlankComponent, FaqComponent, InvoiceComponent, ProfileComponent, PricingComponent, TimelineComponent, BuyComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     FeatherIconModule,
     NgbAccordionModule,
     NgbDropdownModule,
-    NgbTooltipModule
+    FormsModule,
+    ReactiveFormsModule,
+    NgbTooltipModule,
+    NgxStripeModule.forRoot('pk_test_EqkYfH3HJn2kP6DCEBByINFT'),
+    NgSelectModule,
+    SweetAlert2Module.forRoot()
   ]
 })
 export class GeneralModule { }

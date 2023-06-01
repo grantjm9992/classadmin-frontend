@@ -7,6 +7,7 @@ import { AuthComponent } from './auth.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
+import { SetPasswordComponent } from './set-password/set-password.component';
 
 const routes: Routes = [
   {
@@ -29,13 +30,17 @@ const routes: Routes = [
       {
         path: 'confirm-email',
         component: ConfirmEmailComponent
+      },
+      {
+        path: 'set-password',
+        component: SetPasswordComponent
       }
     ]
   },
 ]
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, AuthComponent, ConfirmEmailComponent],
+  declarations: [LoginComponent, RegisterComponent, AuthComponent, ConfirmEmailComponent, SetPasswordComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

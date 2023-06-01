@@ -25,6 +25,18 @@ export class ApiService {
       window.location.href = '/auth/login';
       return throwError(error.error);
     }
+    // Redirect to pricing page if no active subscription
+    if (error.status === 403) {
+      if (error.error.status === 'no_subscription_found' || error.error.status === 'no_active_subscription_found') {
+        window.location.href = '/general/pricing';
+        return throwError(error.error);
+      }
+      if (error.error.status === 'error_not_included_in_subscription') {
+        window.location.href = '/dashboard';
+        return throwError(error.error);
+      }
+    }
+    console.log();
     if (error.error.error) {
       Swal.fire({
         title: 'Error',
