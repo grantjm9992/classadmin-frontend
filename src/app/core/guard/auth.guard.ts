@@ -11,6 +11,7 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     this.userService.getUserEntity().subscribe(user => {
       if (!user) {
+        console.log('here');
         this.authApiService.refresh().subscribe(res => {
           this.userService.setUserEntity(res.user);
           this.userService.setCheck(res.check);

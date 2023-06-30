@@ -21,6 +21,9 @@ export class PersonalCalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUserEntity().subscribe(user => {
+      if (!user) {
+        return;
+      }
       this.checkApiService.getAll(`user_id=${user.id}`).subscribe(res => {
         this.calendarOptions.events = res.data;
       });

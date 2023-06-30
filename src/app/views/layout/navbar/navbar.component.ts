@@ -11,6 +11,7 @@ import {UserService} from "../../../core/services/user.service";
 })
 export class NavbarComponent implements OnInit {
 
+  user: any = null;
   counter: any = null;
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -32,7 +33,10 @@ export class NavbarComponent implements OnInit {
           this.addCounter();
         }
       }
-    })
+    });
+    this.userService.getUserEntity().subscribe(user => {
+      this.user = user;
+    });
   }
 
   /**

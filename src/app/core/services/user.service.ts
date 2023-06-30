@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {BehaviorSubject, Observable, Subject} from "rxjs";
+import {User} from "../models/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class UserService {
 
   setLoggedInUser(user: any) {
   }
-  private userSubject: BehaviorSubject<any | null> = new BehaviorSubject<any | null>(null);
+  private userSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
   private checkSubject: BehaviorSubject<any | null> = new BehaviorSubject<any | null>(null);
 
   setUserEntity(user: any) {
@@ -24,7 +25,7 @@ export class UserService {
     this.userSubject.next(user);
   }
 
-  getUserEntity(): Observable<any | null> {
+  getUserEntity(): Observable<User | null> {
     return this.userSubject.asObservable();
   }
 
