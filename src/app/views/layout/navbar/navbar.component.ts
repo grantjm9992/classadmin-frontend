@@ -3,6 +3,9 @@ import {DatePipe, DOCUMENT} from '@angular/common';
 import { Router } from '@angular/router';
 import {CheckApiService} from "../../../core/services/check.api.service";
 import {UserService} from "../../../core/services/user.service";
+import Swal from "sweetalert2";
+import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
+import {CheckInModalComponent} from "../../time-tracking-context/check-in-modal/check-in-modal.component";
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +22,8 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private checkApiService: CheckApiService,
     private userService: UserService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -53,17 +57,27 @@ export class NavbarComponent implements OnInit {
   onLogout(e: Event) {
     e.preventDefault();
     localStorage.removeItem('isLoggedin');
-
     if (!localStorage.getItem('isLoggedin')) {
       this.router.navigate(['/auth/login']);
     }
   }
 
   public checkIn() {
-    this.checkApiService.checkIn().subscribe(res => {
+    const modalRef: NgbModalRef = this.modalService.open(CheckInModalComponent, {
+      centered: true
+    });
+    modalRef.componentInstance.onSubmit = (): void => {
+      this.checkInAction(modalRef.componentInstance.form.value);
+    }
+  }
+
+  public checkInAction(body: any): void {
+    this.checkApiService.checkIn(body).subscribe(res => {
       this.counter = 0;
       this.addCounter();
       this.userService.setCheck(res.data);
+    }, error => {
+      Swal.fire()
     });
   }
 

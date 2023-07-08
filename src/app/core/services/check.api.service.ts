@@ -10,8 +10,8 @@ export class CheckApiService extends AbstractApiService {
     return "/checks";
   }
 
-  public checkIn(): Observable<any> {
-    return this.post(`${this.getUrl()}/check-in`, {});
+  public checkIn(body: any = {}): Observable<any> {
+    return this.post(`${this.getUrl()}/check-in`, body);
   }
 
   public checkOut(): Observable<any> {

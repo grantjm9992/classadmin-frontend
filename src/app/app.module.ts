@@ -15,6 +15,8 @@ import {AuthApiService} from "./core/services/auth.api.service";
 import {HttpClientModule} from "@angular/common/http";
 import {NgxStripeModule} from "ngx-stripe";
 import {FullCalendarModule} from "@fullcalendar/angular";
+import {ReactiveFormsModule} from "@angular/forms";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import {FullCalendarModule} from "@fullcalendar/angular";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    NgSelectModule,
     LayoutModule,
     HttpClientModule,
     NgxStripeModule.forRoot('pk_test_EqkYfH3HJn2kP6DCEBByINFT'),

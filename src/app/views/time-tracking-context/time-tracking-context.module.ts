@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ClientComponent } from './client/client.component';
 import { ProjectComponent } from './project/project.component';
 import { TaskComponent } from './task/task.component';
@@ -8,11 +9,13 @@ import { ProjectEditComponent } from './project/project-edit/project-edit.compon
 import { TaskEditComponent } from './task/task-edit/task-edit.component';
 import {RouterModule, Routes} from "@angular/router";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgSelectModule} from "@ng-select/ng-select";
 import { PersonalCalendarComponent } from './personal-calendar/personal-calendar.component';
 import {FullCalendarModule} from "@fullcalendar/angular";
 import { CompanyCalendarComponent } from './company-calendar/company-calendar.component';
+import { CheckInModalComponent } from './check-in-modal/check-in-modal.component';
+import {ArchwizardModule} from "angular-archwizard";
 
 
 const routes: Routes = [
@@ -68,6 +71,7 @@ const routes: Routes = [
     TaskEditComponent,
     PersonalCalendarComponent,
     CompanyCalendarComponent,
+    CheckInModalComponent,
   ],
   imports: [
     CommonModule,
@@ -76,7 +80,12 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
+    ArchwizardModule,
+    DragDropModule,
     FullCalendarModule,
+  ],
+  providers: [
+    FormBuilder,
   ]
 })
 export class TimeTrackingContextModule { }

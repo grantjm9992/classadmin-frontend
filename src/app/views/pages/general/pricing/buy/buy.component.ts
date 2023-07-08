@@ -103,7 +103,14 @@ export class BuyComponent implements OnInit {
             type: this.type,
             number_of_users: this.numberOfUsers,
           }).subscribe(res => {
-
+            Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: 'Subscription updated successfully',
+              didClose: () => {
+                this.router.navigate(['dashboard']);
+              }
+            })
           }, err => {
             Swal.fire({
               icon: "error",

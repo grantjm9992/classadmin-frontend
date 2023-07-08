@@ -32,6 +32,7 @@
                 <label class="form-label">Password</label>
                 <input type="password" class="form-control" formControlName="password">
               </div>
+              <p class="text-danger mt-1 mb-1" *ngFor="let err of error">{{ err }}</p>
               <div class="form-check mb-3">
                 <input type="checkbox" class="form-check-input" id="authCheck">
                 <label class="form-check-label" for="authCheck">
