@@ -16,6 +16,7 @@ import {FullCalendarModule} from "@fullcalendar/angular";
 import { CompanyCalendarComponent } from './company-calendar/company-calendar.component';
 import { CheckInModalComponent } from './check-in-modal/check-in-modal.component';
 import {ArchwizardModule} from "angular-archwizard";
+import {LayoutModule} from "../layout/layout.module";
 
 
 const routes: Routes = [
@@ -83,6 +84,7 @@ const routes: Routes = [
     ArchwizardModule,
     DragDropModule,
     FullCalendarModule,
+    LayoutModule,
   ],
   providers: [
     FormBuilder,

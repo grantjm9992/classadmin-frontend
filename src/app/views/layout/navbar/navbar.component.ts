@@ -76,8 +76,6 @@ export class NavbarComponent implements OnInit {
       this.counter = 0;
       this.addCounter();
       this.userService.setCheck(res.data);
-    }, error => {
-      Swal.fire()
     });
   }
 
