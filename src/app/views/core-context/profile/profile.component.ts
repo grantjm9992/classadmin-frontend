@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MyHoursReportModel} from "../../../core/models/my-hours-report.model";
 import {CheckReportApiService} from "../../../core/services/check-report.api.service";
 import {UserService} from "../../../core/services/user.service";
@@ -19,12 +19,14 @@ export class ProfileComponent implements OnInit {
   password: any;
   error: any[] = [];
   formGroup: FormGroup;
+
   constructor(
     private checkReportApiService: CheckReportApiService,
     private userService: UserService,
     private formBuilder: FormBuilder,
     private userApiService: UserApiService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.checkReportApiService.getAll().subscribe((result: MyHoursReportModel) => {
