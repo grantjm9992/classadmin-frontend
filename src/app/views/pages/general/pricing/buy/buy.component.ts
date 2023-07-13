@@ -121,7 +121,18 @@ export class BuyComponent implements OnInit {
         } else if (result.error) {
           // Error creating the token
           console.log(result.error.message);
+          Swal.fire({
+            icon: "error",
+            title: "Payment error",
+            text: result.error.message,
+          });
         }
+      }, error => {
+        Swal.fire({
+          icon: "error",
+          title: "Payment error",
+          text: error.errors,
+        });
       });
   }
 
