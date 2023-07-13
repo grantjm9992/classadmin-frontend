@@ -74,7 +74,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NgbTooltipModule,
-    NgxStripeModule.forRoot('pk_test_EqkYfH3HJn2kP6DCEBByINFT'),
+    NgxStripeModule.forRoot('pk_live_PptJwF4w1zxvXjgMv2ZkqDaq'),
     NgSelectModule,
     SweetAlert2Module.forRoot()
   ]

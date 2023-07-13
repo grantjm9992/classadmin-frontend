@@ -31,7 +31,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
     NgSelectModule,
     LayoutModule,
     HttpClientModule,
-    NgxStripeModule.forRoot('pk_test_EqkYfH3HJn2kP6DCEBByINFT'),
+    NgxStripeModule.forRoot('pk_live_PptJwF4w1zxvXjgMv2ZkqDaq'),
   ],
   providers: [
     AuthGuard,
