@@ -33,6 +33,7 @@ export class CheckInModalComponent implements OnInit {
 
   submitForm() {
     this.formSubmitAttempt = true;
+    console.log(this.form.get('task_id')?.errors);
     if (this.form.valid) {
       if (this.onSubmit) {
         this.onSubmit(this.form.value);
