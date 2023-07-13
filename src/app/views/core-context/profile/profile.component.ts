@@ -63,6 +63,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+
   public pipeHours(seconds: string): string {
     return Math.round(parseInt(seconds) / 3600).toString();
   }
