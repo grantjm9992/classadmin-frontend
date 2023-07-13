@@ -23,11 +23,11 @@ export class CheckInModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      task_id: [null, Validators.required]
+    });
     this.taskApiService.getAll().subscribe(res => {
       this.tasks = res.data;
-      this.form = this.formBuilder.group({
-        task_id: [null, Validators.required]
-      });
     })
   }
 
