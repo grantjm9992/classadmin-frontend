@@ -78,6 +78,6 @@ export class TaskEditComponent implements OnInit {
   delete() {
     this.apiService.remove(this.entity.id).subscribe(res => {
       this.router.navigate(['/time-tracking/task']);
-    })
+    });
   }
 }

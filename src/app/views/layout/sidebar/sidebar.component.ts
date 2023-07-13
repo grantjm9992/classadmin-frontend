@@ -6,6 +6,7 @@ import MetisMenu from 'metismenujs';
 import { MENU } from './menu';
 import { MenuItem } from './menu.model';
 import { Router, NavigationEnd } from '@angular/router';
+import {UserService} from "../../../core/services/user.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -16,10 +17,11 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
   @ViewChild('sidebarToggler') sidebarToggler: ElementRef;
 
+  user: any;
   menuItems: MenuItem[] = [];
   @ViewChild('sidebarMenu') sidebarMenu: ElementRef;
 
-  constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2, router: Router) { 
+  constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2, router: Router, private userService: UserService) {
     router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
 
@@ -41,6 +43,9 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.menuItems = MENU;
+    this.userService.getUserEntity().subscribe(user => {
+      this.user = user;
+    });
 
     /**
      * Sidebar-folded on desktop (min-width:992px and max-width: 1199px)
@@ -55,7 +60,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     // activate menu item
     new MetisMenu(this.sidebarMenu.nativeElement);
-    
+
     this._activateMenuDropdown();
   }
 
@@ -76,7 +81,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
 
   /**
-   * Toggle settings-sidebar 
+   * Toggle settings-sidebar
    */
   toggleSettingsSidebar(e: Event) {
     e.preventDefault();
@@ -149,7 +154,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   resetMenuItems() {
 
     const links = document.getElementsByClassName('nav-link-ref');
-    
+
     for (let i = 0; i < links.length; i++) {
       const menuItemEl = links[i];
       menuItemEl.classList.remove('mm-active');
@@ -158,7 +163,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       if (parentEl) {
           parentEl.classList.remove('mm-active');
           const parent2El = parentEl.parentElement;
-          
+
           if (parent2El) {
             parent2El.classList.remove('mm-show');
           }
@@ -198,13 +203,13 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     const links: any = document.getElementsByClassName('nav-link-ref');
 
     let menuItemEl = null;
-    
+
     for (let i = 0; i < links.length; i++) {
       // tslint:disable-next-line: no-string-literal
         if (window.location.pathname === links[i]['pathname']) {
-          
+
             menuItemEl = links[i];
-            
+
             break;
         }
     }

@@ -44,6 +44,13 @@ export class ApiService {
         icon: 'error',
       });
     }
+    if (error.error.message) {
+      Swal.fire({
+        title: 'Error',
+        text: error.error.message,
+        icon: 'error',
+      });
+    }
     return throwError(error.error);
   }
 

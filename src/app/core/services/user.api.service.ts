@@ -10,4 +10,10 @@ export class UserApiService extends AbstractApiService {
   getUrl(): string {
     return '/users';
   }
+
+  updateUserPassword(id: string, password: string): Observable<any> {
+    return this.post(`${this.getUrl()}/update-password/${id}`, {
+      password: password
+    });
+  }
 }

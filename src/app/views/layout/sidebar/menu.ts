@@ -26,6 +26,7 @@ export const MENU: MenuItem[] = [
   },
   {
     label: 'Admin',
+    profiles: ['company_admin'],
     icon: 'settings',
     subItems: [
       {

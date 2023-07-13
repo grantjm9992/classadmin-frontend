@@ -17,6 +17,7 @@ export class CompanyCalendarComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     initialView: 'resourceTimeline',
     plugins: [dayGridPlugin, timeGridPlugin, resourceTimelinePlugin],
+    schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives'
   };
   constructor(private checkApiService: CheckApiService, private userApiService: UserApiService) { }
 

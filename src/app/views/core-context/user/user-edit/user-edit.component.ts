@@ -31,7 +31,7 @@ export class UserEditComponent implements OnInit {
       name: ['', Validators.required],
       surname: ['', Validators.required],
       email: ['', Validators.required],
-      user_role: ['', Validators.required],
+      user_role: [null, Validators.required],
     });
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     if (this.id !== null && this.id !== 'new') {
