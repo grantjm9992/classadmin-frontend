@@ -17,6 +17,9 @@ import {CompanyCalendarComponent} from './company-calendar/company-calendar.comp
 import {CheckInModalComponent} from './check-in-modal/check-in-modal.component';
 import {ArchwizardModule} from "angular-archwizard";
 import {LayoutModule} from "../layout/layout.module";
+import { ReportComponent } from './report/report.component';
+import {NgApexchartsModule} from "ng-apexcharts";
+import {NgbDatepickerModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 const routes: Routes = [
@@ -59,6 +62,10 @@ const routes: Routes = [
       path: 'company-calendar',
       component: CompanyCalendarComponent
     }]
+  },
+  {
+    path: 'report',
+    component: ReportComponent,
   }
 ]
 
@@ -73,6 +80,7 @@ const routes: Routes = [
     PersonalCalendarComponent,
     CompanyCalendarComponent,
     CheckInModalComponent,
+    ReportComponent,
   ],
   imports: [
     CommonModule,
@@ -85,6 +93,8 @@ const routes: Routes = [
     DragDropModule,
     FullCalendarModule,
     LayoutModule,
+    NgApexchartsModule,
+    NgbDatepickerModule,
   ],
   providers: [
     FormBuilder,

@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
     this.userService.getUserEntity().subscribe((user) => {
       if (user) {
         this.user = user;
-        this.formBuilder.group({
+        this.formGroup = this.formBuilder.group({
           name: [user.name, Validators.required],
           surname: [user.surname, Validators.required],
         });

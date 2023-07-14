@@ -25,6 +25,11 @@ export const MENU: MenuItem[] = [
     link: '/time-tracking/calendar/company-calendar',
   },
   {
+    label: 'Reports',
+    icon: 'bar-chart-2',
+    link: '/time-tracking/report',
+  },
+  {
     label: 'Admin',
     profiles: ['company_admin'],
     icon: 'settings',
@@ -47,4 +52,19 @@ export const MENU: MenuItem[] = [
       },
     ]
   },
+  {
+    label: 'HR',
+    isTitle: true
+  },
+  {
+    label: 'HR Admin',
+    profiles: ['company_admin'],
+    icon: 'settings',
+    subItems: [
+      {
+        label: 'Absence types',
+        link: '/hr/absence-type',
+      },
+    ]
+  }
 ];
