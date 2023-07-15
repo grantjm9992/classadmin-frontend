@@ -6,6 +6,7 @@ import {User} from "../../../core/models/user.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import Swal from "sweetalert2";
 import {UserApiService} from "../../../core/services/user.api.service";
+import {SubscriptionApiService} from "../../../core/services/subscription.api.service";
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +15,7 @@ import {UserApiService} from "../../../core/services/user.api.service";
 })
 export class ProfileComponent implements OnInit {
 
+  public subscription: any;
   public myHoursReport: MyHoursReportModel;
   public user: User;
   password: any;
@@ -24,11 +26,15 @@ export class ProfileComponent implements OnInit {
     private checkReportApiService: CheckReportApiService,
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private userApiService: UserApiService
+    private userApiService: UserApiService,
+    private subscriptionApiService: SubscriptionApiService
   ) {
   }
 
   ngOnInit(): void {
+    this.subscriptionApiService.getAll().subscribe(result => {
+      this.subscription = result.data;
+    });
     this.checkReportApiService.getAll().subscribe((result: MyHoursReportModel) => {
       this.myHoursReport = result;
     });
@@ -45,8 +51,9 @@ export class ProfileComponent implements OnInit {
 
   onSubmit(): void {
     let _updatedValues = this.formGroup.value;
-    const userObject = {...this.user, _updatedValues};
+    const userObject = {...this.user, ..._updatedValues};
     this.userApiService.update(this.user.id, userObject).subscribe(res => {
+      this.userService.setUserEntity(userObject);
       Swal.fire({
         icon: "success",
         title: "Success",
