@@ -37,21 +37,24 @@ export class ApiService {
       }
     }
     console.log();
-    if (error.error.error) {
-      Swal.fire({
-        title: 'Error',
-        text: error.error.error,
-        icon: 'error',
-      });
+    if (error.error) {
+      if (error.error.error) {
+        Swal.fire({
+          title: 'Error',
+          text: error.error.error,
+          icon: 'error',
+        });
+      }
+      if (error.error.message) {
+        Swal.fire({
+          title: 'Error',
+          text: error.error.message,
+          icon: 'error',
+        });
+      }
+      return throwError(error.error);
     }
-    if (error.error.message) {
-      Swal.fire({
-        title: 'Error',
-        text: error.error.message,
-        icon: 'error',
-      });
-    }
-    return throwError(error.error);
+    return throwError(error);
   }
 
   get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
