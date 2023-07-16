@@ -7,6 +7,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import Swal from "sweetalert2";
 import {UserApiService} from "../../../core/services/user.api.service";
 import {SubscriptionApiService} from "../../../core/services/subscription.api.service";
+import {CompanyApiService} from "../../../core/services/company.api.service";
+import {CompanyResponse} from "../../../core/models/company.model";
 
 @Component({
   selector: 'app-profile',
@@ -18,16 +20,19 @@ export class ProfileComponent implements OnInit {
   public subscription: any;
   public myHoursReport: MyHoursReportModel;
   public user: User;
+  public companyConfig: any;
   password: any;
   error: any[] = [];
   formGroup: FormGroup;
+  companyFormGroup: FormGroup;
 
   constructor(
     private checkReportApiService: CheckReportApiService,
     private userService: UserService,
     private formBuilder: FormBuilder,
     private userApiService: UserApiService,
-    private subscriptionApiService: SubscriptionApiService
+    private subscriptionApiService: SubscriptionApiService,
+    private companyApiService: CompanyApiService
   ) {
   }
 
@@ -45,8 +50,27 @@ export class ProfileComponent implements OnInit {
           name: [user.name, Validators.required],
           surname: [user.surname, Validators.required],
         });
+        if (user.user_role === 'company_admin') {
+          this.companyApiService.getCompany(user.company_id).subscribe((res: CompanyResponse) => {
+            this.companyFormGroup = this.formBuilder.group({
+              configuration: {
+                auto_approve_checks: [null, Validators.required],
+                auto_approve_manual_checks: [null, Validators.required],
+                automatic_check_out_time: [null, Validators.required],
+              },
+              name: ['', Validators.required],
+            });
+            this.companyConfig = res.data.configuration;
+            this.companyFormGroup.patchValue(this.companyConfig);
+          });
+        }
       }
     });
+  }
+
+  submitCompanyConfiguration(): void {
+    let _updatedCompanyConfig = this.companyFormGroup.value;
+    const companyConfig = {...this.companyConfig, ..._updatedCompanyConfig};
   }
 
   onSubmit(): void {
@@ -72,8 +96,21 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-
   public pipeHours(seconds: string): string {
     return Math.round(parseInt(seconds) / 3600).toString();
+  }
+
+  private getTimeString(timeObject: any, seconds: boolean = false): string {
+    let string = `${this.pad(timeObject.hour)}:${this.pad(timeObject.minute)}`;
+    if (seconds) {
+      string += `:${this.pad(timeObject.second)}`;
+    }
+    return string;
+  }
+
+  private pad(num:number, size: number = 2): string {
+    let s = num+"";
+    while (s.length < size) s = "0" + s;
+    return s;
   }
 }

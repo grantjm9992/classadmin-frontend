@@ -9,6 +9,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
 import { ProfileComponent } from './profile/profile.component';
 import {FeatherIconModule} from "../../core/feather-icon/feather-icon.module";
 import {NgApexchartsModule} from "ng-apexcharts";
+import {NgbTimepickerModule} from "@ng-bootstrap/ng-bootstrap";
 
 const routes: Routes = [{
   path: 'user',
@@ -30,15 +31,16 @@ const routes: Routes = [{
     UserEditComponent,
     ProfileComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    NgxDatatableModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgSelectModule,
-    FeatherIconModule,
-    NgApexchartsModule,
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        NgxDatatableModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgSelectModule,
+        FeatherIconModule,
+        NgApexchartsModule,
+        NgbTimepickerModule,
+    ]
 })
 export class CoreContextModule { }

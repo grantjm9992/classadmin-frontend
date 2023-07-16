@@ -111,3 +111,116 @@
     </div>
   </div>
 </div>
+
+<ng-container *ngIf="user.user_role === 'company_admin' && companyFormGroup">
+  <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+    <div>
+      <h4 class="mb-3 mb-md-0">Company settings</h4>
+    </div>
+  </div>
+
+  <!-- Report Cards -->
+  <div class="row">
+    <div class="col-12 col-xl-12 stretch-card">
+      <div class="row flex-grow-1" *ngIf="myHoursReport">
+        <div class="col-md-4 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-baseline">
+                <h6 class="card-title mb-0">Hours this week</h6>
+              </div>
+              <div class="row">
+                <div class="col-6 col-md-12 col-xl-5">
+                  <h3 class="mb-2">{{ pipeHours(myHoursReport.thisWeek) }}</h3>
+                  <div class="d-flex align-items-baseline">
+                    <p class="text-success">
+                      <span>+3.3%</span>
+                      <i data-feather="arrow-up" appFeatherIcon class="icon-sm mb-1"></i>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-baseline">
+                <h6 class="card-title mb-0">Hours last week</h6>
+              </div>
+              <div class="row">
+                <div class="col-6 col-md-12 col-xl-5">
+                  <h3 class="mb-2">{{ pipeHours(myHoursReport.lastWeek) }}</h3>
+                  <div class="d-flex align-items-baseline">
+                    <p class="text-success">
+                      <span>+3.3%</span>
+                      <i data-feather="arrow-up" appFeatherIcon class="icon-sm mb-1"></i>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-6 col-md-12 col-xl-7">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-baseline">
+                <h6 class="card-title mb-0">Hours this month</h6>
+              </div>
+              <div class="row">
+                <div class="col-6 col-md-12 col-xl-5">
+                  <h3 class="mb-2">{{ pipeHours(myHoursReport.lastThirtyDays) }}</h3>
+                  <div class="d-flex align-items-baseline">
+                    <p class="text-success">
+                      <span>+3.3%</span>
+                      <i data-feather="arrow-up" appFeatherIcon class="icon-sm mb-1"></i>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-6 col-md-12 col-xl-7">
+                  <div class="mt-md-3 mt-xl-0">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Forms -->
+  <div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">Company</h6>
+
+          <form class="forms-sample" [formGroup]="companyFormGroup" (ngSubmit)="submitCompanyConfiguration()">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="password" class="form-control" autocomplete="off" formControlName="name">
+            </div>
+            <div class="mb-3">
+              <input type="checkbox" class="form-check-input" formControlName="configuration.auto_approve_checks">
+              <label for="name" class="form-label">Auto-approve checks</label>
+            </div>
+            <div class="mb-3">
+              <input type="checkbox" class="form-check-input" formControlName="configuration.auto_approve_manual_checks">
+              <label for="name" class="form-label">Auto-approve manual checks</label>
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label">Automatic check-out time</label>
+              <ngb-timepicker formControlName="configuration.automatic_check_out_time"></ngb-timepicker>
+            </div>
+            <button type="submit" class="btn btn-primary me-2">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
