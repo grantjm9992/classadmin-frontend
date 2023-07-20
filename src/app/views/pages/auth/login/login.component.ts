@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('isLoggedin', 'true');
       localStorage.setItem('token', response.authorisation.token);
       localStorage.setItem('user', JSON.stringify(response.user));
-      this.userService.setLoggedInUser(response.user);
+      this.userService.setUserEntity(response.user);
       if (response.check) {
         this.userService.setCheck(response.check);
       }

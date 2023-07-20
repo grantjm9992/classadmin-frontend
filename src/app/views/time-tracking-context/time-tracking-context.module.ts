@@ -19,7 +19,8 @@ import {ArchwizardModule} from "angular-archwizard";
 import {LayoutModule} from "../layout/layout.module";
 import { ReportComponent } from './report/report.component';
 import {NgApexchartsModule} from "ng-apexcharts";
-import {NgbDatepickerModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbDatepickerModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
+import { WhosInComponent } from './whos-in/whos-in.component';
 
 
 const routes: Routes = [
@@ -81,6 +82,7 @@ const routes: Routes = [
     CompanyCalendarComponent,
     CheckInModalComponent,
     ReportComponent,
+    WhosInComponent,
   ],
   imports: [
     CommonModule,
@@ -95,9 +97,13 @@ const routes: Routes = [
     LayoutModule,
     NgApexchartsModule,
     NgbDatepickerModule,
+    NgbTooltipModule,
   ],
   providers: [
     FormBuilder,
+  ],
+  exports: [
+    WhosInComponent,
   ]
 })
 export class TimeTrackingContextModule {
