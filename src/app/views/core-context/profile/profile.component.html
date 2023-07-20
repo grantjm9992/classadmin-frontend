@@ -203,20 +203,22 @@
           <form class="forms-sample" [formGroup]="companyFormGroup" (ngSubmit)="submitCompanyConfiguration()">
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
-              <input type="password" class="form-control" autocomplete="off" formControlName="name">
+              <input type="text" class="form-control" autocomplete="off" formControlName="name">
             </div>
-            <div class="mb-3">
-              <input type="checkbox" class="form-check-input" formControlName="configuration.auto_approve_checks">
-              <label for="name" class="form-label">Auto-approve checks</label>
-            </div>
-            <div class="mb-3">
-              <input type="checkbox" class="form-check-input" formControlName="configuration.auto_approve_manual_checks">
-              <label for="name" class="form-label">Auto-approve manual checks</label>
-            </div>
-            <div class="mb-3">
-              <label for="name" class="form-label">Automatic check-out time</label>
-              <ngb-timepicker formControlName="configuration.automatic_check_out_time"></ngb-timepicker>
-            </div>
+            <ng-container formGroupName="configuration">
+              <div class="mb-3">
+                <input type="checkbox" class="form-check-input" formControlName="auto_approve_checks">
+                <label for="name" class="form-label">Auto-approve checks</label>
+              </div>
+              <div class="mb-3">
+                <input type="checkbox" class="form-check-input" formControlName="auto_approve_manual_checks">
+                <label for="name" class="form-label">Auto-approve manual checks</label>
+              </div>
+              <div class="mb-3">
+                <label for="name" class="form-label">Automatic check-out time</label>
+                <ngb-timepicker formControlName="automatic_check_out_time"></ngb-timepicker>
+              </div>
+            </ng-container>
             <button type="submit" class="btn btn-primary me-2">Update</button>
           </form>
         </div>

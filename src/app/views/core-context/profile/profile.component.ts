@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   public subscription: any;
   public myHoursReport: MyHoursReportModel;
   public user: User;
-  public companyConfig: any;
+  public company: any;
   password: any;
   error: any[] = [];
   formGroup: FormGroup;
@@ -52,25 +52,30 @@ export class ProfileComponent implements OnInit {
         });
         if (user.user_role === 'company_admin') {
           this.companyApiService.getCompany(user.company_id).subscribe((res: CompanyResponse) => {
+            this.company = res.data;
             this.companyFormGroup = this.formBuilder.group({
-              configuration: {
+              configuration: this.formBuilder.group({
                 auto_approve_checks: [null, Validators.required],
                 auto_approve_manual_checks: [null, Validators.required],
                 automatic_check_out_time: [null, Validators.required],
-              },
+              }),
               name: ['', Validators.required],
             });
-            this.companyConfig = res.data.configuration;
-            this.companyFormGroup.patchValue(this.companyConfig);
+            this.companyFormGroup.patchValue(this.company);
           });
         }
       }
     });
   }
 
+
   submitCompanyConfiguration(): void {
     let _updatedCompanyConfig = this.companyFormGroup.value;
-    const companyConfig = {...this.companyConfig, ..._updatedCompanyConfig};
+    const company = {...this.company, ..._updatedCompanyConfig};
+    console.log(company);
+    this.companyApiService.updateCompany(company.id, company).subscribe(res => {
+      console.log(res);
+    });
   }
 
   onSubmit(): void {
