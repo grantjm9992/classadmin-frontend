@@ -17,6 +17,7 @@ import {CompanyResponse} from "../../../core/models/company.model";
 })
 export class ProfileComponent implements OnInit {
 
+  public loading: boolean = true;
   public subscription: any;
   public myHoursReport: MyHoursReportModel;
   public user: User;
@@ -62,7 +63,10 @@ export class ProfileComponent implements OnInit {
               name: ['', Validators.required],
             });
             this.companyFormGroup.patchValue(this.company);
+            this.loading = false;
           });
+        } else {
+          this.loading = false;
         }
       }
     });
@@ -73,8 +77,12 @@ export class ProfileComponent implements OnInit {
     let _updatedCompanyConfig = this.companyFormGroup.value;
     const company = {...this.company, ..._updatedCompanyConfig};
     console.log(company);
-    this.companyApiService.updateCompany(company.id, company).subscribe(res => {
-      console.log(res);
+    this.companyApiService.updateCompany(company.id, company).subscribe(() => {
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Updated company details successfully"
+      });
     });
   }
 
@@ -87,7 +95,7 @@ export class ProfileComponent implements OnInit {
         icon: "success",
         title: "Success",
         text: "Updated your details successfully"
-      })
+      });
     });
   }
 

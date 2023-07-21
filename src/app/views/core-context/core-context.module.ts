@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import {FeatherIconModule} from "../../core/feather-icon/feather-icon.module";
 import {NgApexchartsModule} from "ng-apexcharts";
 import {NgbTimepickerModule} from "@ng-bootstrap/ng-bootstrap";
+import {LayoutModule} from "../layout/layout.module";
 
 const routes: Routes = [{
   path: 'user',
@@ -41,6 +42,7 @@ const routes: Routes = [{
         FeatherIconModule,
         NgApexchartsModule,
         NgbTimepickerModule,
+        LayoutModule,
     ]
 })
 export class CoreContextModule { }

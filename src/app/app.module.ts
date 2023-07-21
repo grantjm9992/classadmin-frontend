@@ -12,13 +12,11 @@ import { ErrorPageComponent } from './views/pages/error-page/error-page.componen
 
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import {AuthApiService} from "./core/services/auth.api.service";
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import {NgxStripeModule} from "ngx-stripe";
 import {FullCalendarModule} from "@fullcalendar/angular";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NgSelectModule} from "@ng-select/ng-select";
-import {LoadingService} from "./core/services/loading.service";
-import {LoadingInterceptor} from "./core/services/loading.interceptor";
 import {OverlayModule} from "@angular/cdk/overlay";
 
 @NgModule({
@@ -51,12 +49,6 @@ import {OverlayModule} from "@angular/cdk/overlay";
         }
       }
     },
-    LoadingService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoadingInterceptor,
-      multi: true
-    }
   ],
   bootstrap: [AppComponent]
 })

@@ -36,7 +36,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     FeatherIconModule,
   ],
-  exports: [FieldErrorDisplayComponent],
+  exports: [FieldErrorDisplayComponent, LoadingComponent],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
