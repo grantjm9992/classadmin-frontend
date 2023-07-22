@@ -11,6 +11,7 @@ import {FeatherIconModule} from "../../core/feather-icon/feather-icon.module";
 import {NgApexchartsModule} from "ng-apexcharts";
 import {NgbTimepickerModule} from "@ng-bootstrap/ng-bootstrap";
 import {LayoutModule} from "../layout/layout.module";
+import { CompanyComponent } from './company/company.component';
 
 const routes: Routes = [{
   path: 'user',
@@ -24,6 +25,9 @@ const routes: Routes = [{
 }, {
   path: 'profile',
   component: ProfileComponent,
+}, {
+  path: 'company',
+  component: CompanyComponent,
 }]
 
 @NgModule({
@@ -31,6 +35,7 @@ const routes: Routes = [{
     UserComponent,
     UserEditComponent,
     ProfileComponent,
+    CompanyComponent,
   ],
     imports: [
         CommonModule,

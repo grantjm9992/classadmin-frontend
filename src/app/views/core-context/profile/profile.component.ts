@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   public subscription: any;
   public myHoursReport: MyHoursReportModel;
   public user: User;
+  public users: any[];
   public company: any;
   password: any;
   error: any[] = [];
@@ -51,40 +52,12 @@ export class ProfileComponent implements OnInit {
           name: [user.name, Validators.required],
           surname: [user.surname, Validators.required],
         });
-        if (user.user_role === 'company_admin') {
-          this.companyApiService.getCompany(user.company_id).subscribe((res: CompanyResponse) => {
-            this.company = res.data;
-            this.companyFormGroup = this.formBuilder.group({
-              configuration: this.formBuilder.group({
-                auto_approve_checks: [null, Validators.required],
-                auto_approve_manual_checks: [null, Validators.required],
-                automatic_check_out_time: [null, Validators.required],
-              }),
-              name: ['', Validators.required],
-            });
-            this.companyFormGroup.patchValue(this.company);
-            this.loading = false;
-          });
-        } else {
-          this.loading = false;
-        }
+        this.loading = false;
       }
     });
   }
 
 
-  submitCompanyConfiguration(): void {
-    let _updatedCompanyConfig = this.companyFormGroup.value;
-    const company = {...this.company, ..._updatedCompanyConfig};
-    console.log(company);
-    this.companyApiService.updateCompany(company.id, company).subscribe(() => {
-      Swal.fire({
-        icon: "success",
-        title: "Success",
-        text: "Updated company details successfully"
-      });
-    });
-  }
 
   onSubmit(): void {
     let _updatedValues = this.formGroup.value;
@@ -113,17 +86,4 @@ export class ProfileComponent implements OnInit {
     return Math.round(parseInt(seconds) / 3600).toString();
   }
 
-  private getTimeString(timeObject: any, seconds: boolean = false): string {
-    let string = `${this.pad(timeObject.hour)}:${this.pad(timeObject.minute)}`;
-    if (seconds) {
-      string += `:${this.pad(timeObject.second)}`;
-    }
-    return string;
-  }
-
-  private pad(num:number, size: number = 2): string {
-    let s = num+"";
-    while (s.length < size) s = "0" + s;
-    return s;
-  }
 }
