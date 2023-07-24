@@ -19,8 +19,9 @@ import {ArchwizardModule} from "angular-archwizard";
 import {LayoutModule} from "../layout/layout.module";
 import { ReportComponent } from './report/report.component';
 import {NgApexchartsModule} from "ng-apexcharts";
-import {NgbDatepickerModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbDatepickerModule, NgbTimepickerModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 import { WhosInComponent } from './whos-in/whos-in.component';
+import { AddManualCheckModalComponent } from './add-manual-check-modal/add-manual-check-modal.component';
 
 
 const routes: Routes = [
@@ -83,6 +84,7 @@ const routes: Routes = [
     CheckInModalComponent,
     ReportComponent,
     WhosInComponent,
+    AddManualCheckModalComponent,
   ],
   imports: [
     CommonModule,
@@ -98,6 +100,7 @@ const routes: Routes = [
     NgApexchartsModule,
     NgbDatepickerModule,
     NgbTooltipModule,
+    NgbTimepickerModule,
   ],
   providers: [
     FormBuilder,
