@@ -60,7 +60,7 @@ export class PersonalCalendarComponent implements OnInit {
     modalRef.componentInstance.onSubmit = (): void => {
       let formValue = modalRef.componentInstance.form.value;
       let entity = {
-        date_ended: `${this.getDateString(formValue.date_end)} ${this.getTimeString(formValue.time_end)}`,
+        date_ended: `${this.getDateString(formValue.date_start)} ${this.getTimeString(formValue.time_end)}`,
         date_started: `${this.getDateString(formValue.date_start)} ${this.getTimeString(formValue.time_start)}`,
         user_id: this.user.id,
         status: 'closed',

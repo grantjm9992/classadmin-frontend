@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TaskApiService} from "../../../core/services/task.api.service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {date} from "ngx-custom-validators/src/app/date/validator";
 
 @Component({
   selector: 'app-add-manual-check-modal',
@@ -25,9 +26,9 @@ export class AddManualCheckModalComponent implements OnInit {
     this.form = this.formBuilder.group({
       task_id: [null, Validators.required],
       date_start: [null, Validators.required],
-      time_start: [null, Validators.required],
+      time_start: [{hour: 8, minute: 0, second: 0}, Validators.required],
       date_end: [null, Validators.required],
-      time_end: [null, Validators.required],
+      time_end: [{hour: 17, minute: 0, second: 0}, [Validators.required]],
     });
     this.taskApiService.getAll().subscribe(res => {
       this.tasks = res.data;
